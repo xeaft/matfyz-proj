@@ -1,0 +1,225 @@
+[gd_scene load_steps=13 format=3 uid="uid://ojnr20dand0i"]
+
+[ext_resource type="Script" path="res://Scripts/Kmitani/KmitSpeedControl.gd" id="1_6adj0"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/KmitMovementToggle.gd" id="1_dm2pd"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/ShowPath.gd" id="1_v41m5"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/KmitToggle.gd" id="2_y6huq"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/MovementSpeed.gd" id="4_yxj5f"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/ResetBall.gd" id="6_3mkyq"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/Offset.gd" id="6_5k8y4"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/moveRight.gd" id="6_m3pv6"]
+[ext_resource type="Script" path="res://Scripts/BackToMainMenu.gd" id="7_ynvcf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxj5f"]
+bg_color = Color(0.470915, 0.0158269, 2.40654e-08, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v41m5"]
+bg_color = Color(0.801263, 4.23551e-06, 2.88785e-07, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mkyq"]
+bg_color = Color(1, 0.359471, 0.270218, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="KmitaniControl" type="Control"]
+layout_mode = 3
+anchor_right = 0.289
+anchor_bottom = 1.023
+offset_right = 0.071991
+offset_bottom = -14.904
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.627
+anchor_bottom = 0.992
+offset_right = 0.0450745
+offset_bottom = -0.216553
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.569
+anchor_bottom = 0.441
+offset_right = 0.2323
+offset_bottom = 0.338196
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ShowPath" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ShowPath"]
+layout_mode = 2
+text = "Ukázat cestu"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/ShowPath"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+button_pressed = true
+script = ExtResource("1_v41m5")
+
+[node name="KmitToggle" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/KmitToggle"]
+layout_mode = 2
+text = "Kmitání"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/KmitToggle"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+button_pressed = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_y6huq")
+
+[node name="RychlostKmitani" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/RychlostKmitani"]
+layout_mode = 2
+text = "Ryhclost Kmitání"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/RychlostKmitani"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 1.0
+value = 50.0
+script = ExtResource("1_6adj0")
+
+[node name="MoveTogggle" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MoveTogggle"]
+layout_mode = 2
+text = "Pohyb
+"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/MoveTogggle"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("1_dm2pd")
+
+[node name="RychlostPohybu" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/RychlostPohybu"]
+layout_mode = 2
+text = "Ryhclost Pohybu
+"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/RychlostPohybu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 1.0
+value = 50.0
+script = ExtResource("4_yxj5f")
+
+[node name="Posunuti" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Posunuti"]
+layout_mode = 2
+text = "Posunutí Bodu"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/Posunuti"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = -20.0
+max_value = 20.0
+script = ExtResource("6_5k8y4")
+
+[node name="MoveRight" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MoveRight"]
+layout_mode = 2
+text = "Pohybovat  doprava
+"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/MoveRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_m3pv6")
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_yxj5f")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_v41m5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_v41m5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_v41m5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_v41m5")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_3mkyq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3mkyq")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_yxj5f")
+theme_override_styles/normal = SubResource("StyleBoxFlat_yxj5f")
+text = "Resetovat hmotný bod"
+script = ExtResource("6_3mkyq")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.93
+anchor_right = 0.176
+anchor_bottom = 0.992
+offset_left = 12.0
+offset_top = 0.359436
+offset_right = -0.0519028
+offset_bottom = -8.81653
+grow_vertical = 0
+focus_mode = 0
+text = "Zpět "
+script = ExtResource("7_ynvcf")
+
+[connection signal="toggled" from="MarginContainer/HBoxContainer/ShowPath/CheckButton" to="MarginContainer/HBoxContainer/ShowPath/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/KmitToggle/CheckButton" to="MarginContainer/HBoxContainer/KmitToggle/CheckButton" method="_on_toggled"]
+[connection signal="changed" from="MarginContainer/HBoxContainer/RychlostKmitani/HSlider" to="MarginContainer/HBoxContainer/RychlostKmitani/HSlider" method="_on_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/RychlostKmitani/HSlider" to="MarginContainer/HBoxContainer/RychlostKmitani/HSlider" method="_on_value_changed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/MoveTogggle/CheckButton" to="MarginContainer/HBoxContainer/MoveTogggle/CheckButton" method="_on_toggled"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/RychlostPohybu/HSlider" to="MarginContainer/HBoxContainer/RychlostPohybu/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/Posunuti/HSlider" to="MarginContainer/HBoxContainer/Posunuti/HSlider" method="_on_value_changed"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/MoveRight/CheckButton" to="MarginContainer/HBoxContainer/MoveRight/CheckButton" method="_on_toggled"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

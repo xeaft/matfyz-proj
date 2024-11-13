@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1nfjbyyd5h26"]
+
+[ext_resource type="Script" path="res://Scripts/Crossbow/CrossbowDart.gd" id="1_3q7wg"]
+[ext_resource type="PackedScene" uid="uid://bcvnheq5lrd3q" path="res://Scenes/AssetScenes/cone.tscn" id="1_tisti"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q7wg"]
+albedo_color = Color(0.31498, 0.130055, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rdpq7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdpq7"]
+
+[node name="CrossbowDart" type="Node3D"]
+
+[node name="Dart" type="RigidBody3D" parent="."]
+script = ExtResource("1_3q7wg")
+
+[node name="long" type="MeshInstance3D" parent="Dart"]
+transform = Transform3D(0.05, 0, 0, 0, -1.0753e-08, 0.05, 0, -0.246, -2.18557e-09, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_3q7wg")
+mesh = SubResource("CylinderMesh_rdpq7")
+
+[node name="Cone" parent="Dart" instance=ExtResource("1_tisti")]
+transform = Transform3D(0.035, 0, 0, 0, -1.5299e-09, 0.035, 0, -0.035, -1.5299e-09, 0, -2.81692e-08, -0.261639)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dart"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -0.259363)
+shape = SubResource("BoxShape3D_rdpq7")

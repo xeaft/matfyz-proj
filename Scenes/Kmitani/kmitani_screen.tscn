@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxhr6ild8n0q5"]
+
+[ext_resource type="PackedScene" uid="uid://bde3cfq3w46ru" path="res://Scenes/Kmitani/KmitaniBall.tscn" id="1_qc2lo"]
+
+[node name="KmitaniScreen" type="Node3D"]
+
+[node name="SinMoveBall" parent="." instance=ExtResource("1_qc2lo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)

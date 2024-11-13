@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhvwt2ox06mum"]
+
+[ext_resource type="PackedScene" uid="uid://bbhr1tlvqvhgv" path="res://Assets/3D/CrossbowLoaded.fbx" id="1_3dql1"]
+
+[node name="CrossbowLoaded" instance=ExtResource("1_3dql1")]

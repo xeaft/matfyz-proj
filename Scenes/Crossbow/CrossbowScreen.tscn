@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://c26i5eaw3b02l"]
+
+[ext_resource type="Script" path="res://Scripts/Crossbow/Crossbow.gd" id="1_0rrg3"]
+[ext_resource type="PackedScene" uid="uid://dat0aqumily3r" path="res://Scenes/Crossbow/crossbow.tscn" id="2_lxw5g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rrg3"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_lxw5g"]
+sky_material = SubResource("ProceduralSkyMaterial_0rrg3")
+
+[sub_resource type="Environment" id="Environment_syiuj"]
+background_mode = 2
+sky = SubResource("Sky_lxw5g")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_syiuj"]
+cull_mode = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_sp68k"]
+
+[node name="CrossbowScreen" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_syiuj")
+
+[node name="CrossbowInstance" type="Node3D" parent="."]
+transform = Transform3D(0.2, -5.42499e-05, 0.000234875, 0.000104467, 0.195125, -0.043887, -0.000217245, 0.0438871, 0.195125, 0, -0.657696, 3.46711)
+script = ExtResource("1_0rrg3")
+
+[node name="Crossbow" parent="CrossbowInstance" instance=ExtResource("2_lxw5g")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.936739, -0.0785426, 0.341102, 0, 0.974499, 0.22439, -0.350028, -0.210195, 0.912852, 0.769046, 0, 4.92913)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(4.7988, 0, 0, 0, 1.72618, 0, 0, 0, 10.0439, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_syiuj")
+mesh = SubResource("BoxMesh_sp68k")
+skeleton = NodePath("../..")

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcpi2x856hcay"]
+
+[ext_resource type="PackedScene" uid="uid://djcrgdeuqy350" path="res://Assets/3D/CrossbowUnloaded.fbx" id="1_rr2wa"]
+
+[node name="CrossbowUnloaded" instance=ExtResource("1_rr2wa")]

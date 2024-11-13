@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://bde3cfq3w46ru"]
+
+[ext_resource type="Script" path="res://Scripts/Kmitani/Init.gd" id="1_64xyk"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/KmitaniBall.gd" id="2_d0is5"]
+[ext_resource type="Script" path="res://addons/LineRenderer/line_renderer.gd" id="3_prx4p"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_n7sa4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05nl5"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e8w26"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dt7s"]
+shading_mode = 0
+albedo_color = Color(0.695503, 0.695503, 0.695503, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_3hq2q"]
+
+[node name="SinMoveBall" type="Node3D"]
+script = ExtResource("1_64xyk")
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+script = ExtResource("2_d0is5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("SphereMesh_n7sa4")
+surface_material_override/0 = SubResource("StandardMaterial3D_05nl5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+shape = SubResource("SphereShape3D_e8w26")
+
+[node name="LineRenderer3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_6dt7s")
+mesh = SubResource("ImmediateMesh_3hq2q")
+script = ExtResource("3_prx4p")
+points = Array[Vector3]([])
+start_thickness = 0.03
+end_thickness = 0.03
+corner_resolution = 830
+draw_caps = false
+draw_crners = false
+tile_texture = false
