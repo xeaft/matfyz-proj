@@ -26,7 +26,7 @@ func loadC() -> void:
 	loaded = true
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_released("shoot"):
 		if loaded:
 			shoot()

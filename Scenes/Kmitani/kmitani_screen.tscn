@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxhr6ild8n0q5"]
+[gd_scene load_steps=4 format=3 uid="uid://dxhr6ild8n0q5"]
 
 [ext_resource type="PackedScene" uid="uid://bde3cfq3w46ru" path="res://Scenes/Kmitani/KmitaniBall.tscn" id="1_qc2lo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hn2gg"]
+shading_mode = 0
+albedo_color = Color(0.125911, 0.125911, 0.125911, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2w7nq"]
 
 [node name="KmitaniScreen" type="Node3D"]
 
 [node name="SinMoveBall" parent="." instance=ExtResource("1_qc2lo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Background" type="MeshInstance3D" parent="."]
+transform = Transform3D(31.6308, 0, 0, 0, -2.80512e-07, -25.818, 0, 6.41737, -1.12854e-06, 0, 0, -0.264297)
+material_override = SubResource("StandardMaterial3D_hn2gg")
+mesh = SubResource("PlaneMesh_2w7nq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.16214)

@@ -1,28 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1nfjbyyd5h26"]
+[gd_scene load_steps=8 format=3 uid="uid://b1nfjbyyd5h26"]
 
 [ext_resource type="Script" path="res://Scripts/Crossbow/CrossbowDart.gd" id="1_3q7wg"]
 [ext_resource type="PackedScene" uid="uid://bcvnheq5lrd3q" path="res://Scenes/AssetScenes/cone.tscn" id="1_tisti"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/AreaCollision.gd" id="3_rdpq7"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/DistanceLabel.gd" id="4_hqbok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q7wg"]
-albedo_color = Color(0.31498, 0.130055, 0, 1)
+albedo_color = Color(0.723749, 0.334511, 2.88785e-07, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rdpq7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdpq7"]
 
-[node name="CrossbowDart" type="Node3D"]
+[node name="CrossbowDart" type="Node3D" groups=["crossbow_dart"]]
 
-[node name="Dart" type="RigidBody3D" parent="."]
+[node name="Dart" type="StaticBody3D" parent="."]
 script = ExtResource("1_3q7wg")
 
 [node name="long" type="MeshInstance3D" parent="Dart"]
-transform = Transform3D(0.05, 0, 0, 0, -1.0753e-08, 0.05, 0, -0.246, -2.18557e-09, 0, 0, 0)
+transform = Transform3D(0.025, 0, 0, 0, -1.04907e-08, 0.025, 0, -0.24, -1.09278e-09, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_3q7wg")
 mesh = SubResource("CylinderMesh_rdpq7")
 
 [node name="Cone" parent="Dart" instance=ExtResource("1_tisti")]
-transform = Transform3D(0.035, 0, 0, 0, -1.5299e-09, 0.035, 0, -0.035, -1.5299e-09, 0, -2.81692e-08, -0.261639)
+transform = Transform3D(0.0675163, 0, 0, 0, -1.5299e-09, 0.0802909, 0, -0.035, -3.50963e-09, 0, -2.82792e-08, -0.264155)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Dart"]
+[node name="Area3D" type="Area3D" parent="Dart"]
+input_ray_pickable = false
+script = ExtResource("3_rdpq7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dart/Area3D"]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, -0.259363)
 shape = SubResource("BoxShape3D_rdpq7")
+
+[node name="DefaultLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147043, 0)
+visible = false
+billboard = 1
+double_sided = false
+no_depth_test = true
+modulate = Color(0.938874, 0.938874, 1.54018e-06, 1)
+text = "fghfgh"
+outline_size = 4
+script = ExtResource("4_hqbok")
+
+[connection signal="body_entered" from="Dart/Area3D" to="Dart/Area3D" method="_on_body_entered"]

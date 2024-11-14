@@ -3,10 +3,13 @@ extends Node3D
 @onready var selectedMode : String = ""
 @onready var kmitaniScene : PackedScene = preload("res://Scenes/Kmitani/kmitani_screen.tscn")
 var kmitBall : Node3D
+var crossbow : Node3D
 var dbgTxt : Label
 var game : Node3D
 var UI : Control
 var mainMenu : Control
+
+var RNG : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var currentProject : Node3D
 var preloaded : Dictionary = {
@@ -16,7 +19,7 @@ var preloaded : Dictionary = {
 	"kuse": preload("res://Scenes/Crossbow/CrossbowScreen.tscn"),
 }
 
-var defaultMMThings : Array = ["Background", "Camera3D", "UserInterface", "MainMenu"]
+var defaultMMThings : Array = ["UserInterface", "MainMenu"]
 func backToMainMenu() -> void:
 	for i in UI.get_children():
 		if i.name != "dbgInfo":

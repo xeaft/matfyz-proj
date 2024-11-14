@@ -1,10 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv0ytx44ktsqn"]
+[gd_scene load_steps=6 format=3 uid="uid://dv0ytx44ktsqn"]
 
 [ext_resource type="Script" path="res://Scripts/MMInit.gd" id="1_kl303"]
 [ext_resource type="Script" path="res://Scripts/MMButton.gd" id="1_oh50l"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h7grp"]
 font_size = 46
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kl303"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.277345, 0.034167, 0.0292268, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cdby1"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.277345, 0.034167, 0.0292268, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -53,6 +75,8 @@ layout_mode = 2
 [node name="Water" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_kl303")
+disabled = true
 text = "Voda"
 script = ExtResource("1_oh50l")
 forWhat = "voda"
@@ -67,6 +91,8 @@ forWhat = "kmitani"
 [node name="Throwing" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer2/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_cdby1")
+disabled = true
 text = "Házení"
 script = ExtResource("1_oh50l")
 forWhat = "hazeni"

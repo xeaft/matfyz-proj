@@ -13,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_j5h86")
 
 [node name="dbgInfo" parent="." instance=ExtResource("2_dj4dn")]
+visible = false
 layout_mode = 1
 offset_left = 904.0
 offset_top = 480.0

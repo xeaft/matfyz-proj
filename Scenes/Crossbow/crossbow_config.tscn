@@ -1,0 +1,199 @@
+[gd_scene load_steps=12 format=3 uid="uid://d2esm5fp6xmqk"]
+
+[ext_resource type="Script" path="res://Scripts/Crossbow/crossbowStrength.gd" id="1_iahqy"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/rotation.gd" id="1_uo1uc"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/TihoveZrychleni.gd" id="1_wb407"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/loadAndShoot.gd" id="3_eedmq"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/clear_arrows.gd" id="3_ltyq5"]
+[ext_resource type="Script" path="res://Scripts/BackToMainMenu.gd" id="9_jvg60"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grju5"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wb407"]
+bg_color = Color(0.10748, 0.10748, 0.10748, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ym8l0"]
+bg_color = Color(0.470915, 0.0158269, 2.40654e-08, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nbdo"]
+bg_color = Color(0.801263, 4.23551e-06, 2.88785e-07, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1p1p"]
+bg_color = Color(1, 0.359471, 0.270218, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CrossbowConfig" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1168.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.627
+anchor_bottom = 0.992
+offset_right = 0.0450745
+offset_bottom = -0.216553
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.427451)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.569
+anchor_bottom = 0.441
+offset_right = 0.2323
+offset_bottom = 0.338196
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ShowPath" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ShowPath"]
+layout_mode = 2
+text = "Ukázat cestu"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/ShowPath"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+button_pressed = true
+
+[node name="CrossbowStrength" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CrossbowStrength"]
+layout_mode = 2
+text = "Síla výstřelu"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CrossbowStrength"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 10.0
+max_value = 50.0
+value = 20.0
+script = ExtResource("1_iahqy")
+
+[node name="CrossbowRotation" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CrossbowRotation"]
+layout_mode = 2
+text = "Otočení kuše"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CrossbowRotation"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 1.0
+max_value = 89.0
+value = 45.0
+script = ExtResource("1_uo1uc")
+
+[node name="TihoveZrychleni" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
+layout_mode = 2
+text = "Tíhové Zrychlení"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = 0.1
+max_value = 40.0
+step = 0.1
+value = 9.3
+script = ExtResource("1_wb407")
+
+[node name="ValueText" type="Label" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
+layout_mode = 2
+text = "09.3
+"
+
+[node name="LoadAndShoot" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_grju5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wb407")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_wb407")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wb407")
+text = "Nabít"
+script = ExtResource("3_eedmq")
+
+[node name="ClearArrows" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_ym8l0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_1nbdo")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_1nbdo")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_1nbdo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1nbdo")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_x1p1p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x1p1p")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ym8l0")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ym8l0")
+text = "Smazat šipky"
+script = ExtResource("3_ltyq5")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.93
+anchor_right = 0.176
+anchor_bottom = 0.992
+offset_left = 12.0
+offset_top = 0.359436
+offset_right = -0.0519028
+offset_bottom = -8.81653
+grow_vertical = 0
+focus_mode = 0
+text = "Zpět "
+script = ExtResource("9_jvg60")
+
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/CrossbowStrength/HSlider" to="MarginContainer/HBoxContainer/CrossbowStrength/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/CrossbowRotation/HSlider" to="MarginContainer/HBoxContainer/CrossbowRotation/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" to="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/LoadAndShoot" to="MarginContainer/HBoxContainer/LoadAndShoot" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ClearArrows" to="MarginContainer/HBoxContainer/ClearArrows" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
