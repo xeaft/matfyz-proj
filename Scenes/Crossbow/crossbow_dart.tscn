@@ -23,7 +23,7 @@ material_override = SubResource("StandardMaterial3D_3q7wg")
 mesh = SubResource("CylinderMesh_rdpq7")
 
 [node name="Cone" parent="Dart" instance=ExtResource("1_tisti")]
-transform = Transform3D(0.0675163, 0, 0, 0, -1.5299e-09, 0.0802909, 0, -0.035, -3.50963e-09, 0, -2.82792e-08, -0.264155)
+transform = Transform3D(0.0201605, 0, 0, 0, -1.53858e-09, -0.0240393, 0, -0.0351985, 1.05079e-09, 0, -2.82792e-08, -0.264155)
 
 [node name="Area3D" type="Area3D" parent="Dart"]
 input_ray_pickable = false

@@ -2,8 +2,8 @@ extends StaticBody3D
 
 var initAngle : float
 var timeFlying : float = 0
-var initVeloY : float = Main.crossbow.configuration["InitialVelocityX"]
-var initVeloX : float = Main.crossbow.configuration["InitialVelocityY"]
+var initVeloY : float = Main.crossbow.configuration["InitialVelocity"]
+var initVeloX : float = Main.crossbow.configuration["InitialVelocity"]
 var onGround : bool = false
 var initPos : Vector3
 var onFallPos : float
@@ -13,10 +13,10 @@ var initGlobalAngle : float
 @onready var newLabel : Label3D
 
 func shoot(rot : float) -> void:
-	var veloXRand : float = Main.crossbow.configuration["VelocityXRandomness"]
+	var veloXRand : float = Main.crossbow.configuration["VelocityRandomness"]
 	var addVeloX : float = Main.RNG.randf_range(-veloXRand, veloXRand) / 10.0
 	
-	var veloYRand : float = Main.crossbow.configuration["VelocityYRandomness"]
+	var veloYRand : float = Main.crossbow.configuration["VelocityRandomness"]
 	var addVeloY : float = Main.RNG.randf_range(-veloYRand, veloYRand) / 10.0
 	
 	initVeloY *= sin(rot)
@@ -43,13 +43,13 @@ func wentThroughWall(oldPos : Vector3, newPos : Vector3) -> Vector3:
 func collide() -> void:
 	if onGround:
 		return
-	
+		
+	var distance : float = round(initPos.distance_to(global_position) * 100) / 100
+	onGround = true
 	if not is_instance_valid(label):
 		return
 	
-	onGround = true
 	onFallPos = position.y
-	var distance : float = round(initPos.distance_to(global_position) * 100) / 100
 	newLabel = label.duplicate()
 	newLabel.text = str(distance) + "m"
 	newLabel.name = "label"

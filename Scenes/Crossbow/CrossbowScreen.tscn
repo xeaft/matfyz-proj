@@ -17,10 +17,9 @@ sky = SubResource("Sky_lxw5g")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_0rrg3"]
+[sub_resource type="BoxMesh" id="BoxMesh_lxw5g"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lxw5g"]
-size = Vector3(1.66058, 1, 2.13867)
+[sub_resource type="BoxShape3D" id="BoxShape3D_syiuj"]
 
 [node name="CrossbowScreen" type="Node3D"]
 script = ExtResource("1_lxw5g")
@@ -33,87 +32,72 @@ shadow_enabled = true
 environment = SubResource("Environment_syiuj")
 
 [node name="CrossbowInstance" type="Node3D" parent="."]
-transform = Transform3D(0.2, -5.42499e-05, 0.000234875, 0.000199094, 0.14704, -0.13557, -0.000135906, 0.13557, 0.14704, 0, -0.657696, 3.46711)
+transform = Transform3D(0.2, -0.000115495, 0.000259406, 0.000259407, 0.148629, -0.133826, -0.000115495, 0.133826, 0.148629, 0, -0.657696, 3.46711)
 script = ExtResource("1_0rrg3")
 
 [node name="Crossbow" parent="CrossbowInstance" instance=ExtResource("2_lxw5g")]
 
-[node name="FakeCamera" type="Camera3D" parent="."]
-transform = Transform3D(0.936739, -0.0785426, 0.341102, 0, 0.974499, 0.22439, -0.350028, -0.210195, 0.912852, 0.769046, 0, 4.92913)
+[node name="Cameras" type="Node3D" parent="."]
+
+[node name="1" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.936739, -0.0785428, 0.341102, 0, 0.974499, 0.22439, -0.350028, -0.210195, 0.912852, 0.769046, 0, 4.92913)
 current = true
+fov = 105.0
+
+[node name="2" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -45.4423)
+fov = 105.0
+
+[node name="3" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -71.8274)
+fov = 105.0
+
+[node name="4" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -98.5676)
+fov = 105.0
+
+[node name="5" type="Camera3D" parent="Cameras"]
+transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -125.661)
 fov = 105.0
 
 [node name="Room" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room"]
-transform = Transform3D(7.21846, 0, 0, 0, 0.0590355, 0, 0, 0, 12.1881, 0, -1.18368, 0)
+[node name="Floor" type="StaticBody3D" parent="Room"]
+transform = Transform3D(16.2308, 0, 0, 0, 0.0935403, 0, 0, 0, 171.887, 0, -1.39628, -70.1497)
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.38211, 0, 0, 0)
-mesh = SubResource("BoxMesh_0rrg3")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Floor"]
+mesh = SubResource("BoxMesh_lxw5g")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D"]
-shape = SubResource("BoxShape3D_lxw5g")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
+shape = SubResource("BoxShape3D_syiuj")
 
-[node name="StaticBody3D7" type="StaticBody3D" parent="Room"]
-transform = Transform3D(7.21846, 0, 0, 0, 0.0590355, 0, 0, 0, 19.7368, 0, 7.67356, -5.20795)
+[node name="Roof" type="StaticBody3D" parent="Room"]
+transform = Transform3D(16.2308, 0, 0, 0, 0.0935403, 0, 0, 0, 171.887, 0, 36.1045, -70.1497)
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.20699, 0, 0, 0.0782008)
-mesh = SubResource("BoxMesh_0rrg3")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Roof"]
+mesh = SubResource("BoxMesh_lxw5g")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D7"]
-shape = SubResource("BoxShape3D_lxw5g")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Roof"]
+shape = SubResource("BoxShape3D_syiuj")
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="Room"]
-transform = Transform3D(7.21846, 0, 0, 0, 0.0590355, 0, 0, 0, 12.1881, 0, 0.357626, -12.6929)
+[node name="LeftWall" type="StaticBody3D" parent="Room"]
+transform = Transform3D(-1.66303e-06, -0.0935402, 0, 38.0456, -4.08877e-09, 0, 0, 0, 171.887, -8.02332, 17.1078, -70.1497)
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D5"]
-mesh = SubResource("BoxMesh_0rrg3")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/LeftWall"]
+mesh = SubResource("BoxMesh_lxw5g")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.579013)
-shape = SubResource("BoxShape3D_lxw5g")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/LeftWall"]
+shape = SubResource("BoxShape3D_syiuj")
 
-[node name="StaticBody3D6" type="StaticBody3D" parent="Room"]
-transform = Transform3D(7.21846, 0, 0, 0, 0.0398336, -1.70527, 0, 0.0167273, 4.06083, 0, -0.430043, -4.67433)
+[node name="RightWall" type="StaticBody3D" parent="Room"]
+transform = Transform3D(-1.66303e-06, -0.0935402, 0, 38.0456, -4.08877e-09, 0, 0, 0, 171.887, 8.08127, 17.1078, -70.1497)
+metadata/_edit_group_ = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D6"]
-mesh = SubResource("BoxMesh_0rrg3")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RightWall"]
+mesh = SubResource("BoxMesh_lxw5g")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000142025, 2.14831, 0.582608)
-shape = SubResource("BoxShape3D_lxw5g")
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-3.15529e-07, -0.0590355, 0, 7.21846, -2.58053e-09, 0, 0, 0, 12.1881, -3.48783, 1.80789, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D2"]
-transform = Transform3D(1.33713, 0, 0, -2.27374e-12, 1, 0, 0, 0, 2.22423, 0.173922, -1.90735e-05, -0.179303)
-mesh = SubResource("BoxMesh_0rrg3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.197266)
-shape = SubResource("BoxShape3D_lxw5g")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-3.15529e-07, -0.0590355, 0, 7.21846, -2.58053e-09, 0, 0, 0, 12.1881, 3.42533, 1.80789, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D3"]
-transform = Transform3D(1.44824, 0, 0, 0, 1, 0, 0, 0, 1.70191, 0.0990886, 0, -0.388261)
-mesh = SubResource("BoxMesh_0rrg3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.70133, 0, -0.723202, -0.372167)
-shape = SubResource("BoxShape3D_lxw5g")
-
-[node name="StaticBody3D4" type="StaticBody3D" parent="Room"]
-transform = Transform3D(3.94373e-14, 2.58053e-09, 12.1881, 7.21846, -2.58053e-09, 0, 3.15529e-07, 0.0590355, -5.32758e-07, 2.11658, 1.80789, -5.9639)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/StaticBody3D4"]
-transform = Transform3D(1.47729, 0, 8.47033e-22, -9.09495e-13, 1, 0, 2.11758e-22, 0, 0.580903, 0.0970308, -147.324, -0.173792)
-mesh = SubResource("BoxMesh_0rrg3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D4"]
-transform = Transform3D(1, 0, 2.87991e-20, 0, 1, 0, -1.05879e-22, 0, 1, 0.0221252, -154.634, -0.179687)
-shape = SubResource("BoxShape3D_lxw5g")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RightWall"]
+shape = SubResource("BoxShape3D_syiuj")

@@ -2,14 +2,13 @@ extends Node3D
 
 var configuration : Dictionary = {
 	"TihoveZrychleni": 10,
-	"InitialVelocityX": 20.0,
-	"InitialVelocityY": 20.0,
+	"InitialVelocity": 20.0,
 	"ShowPath": false,
-	"VelocityYRandomness": 10.0,
-	"VelocityXRandomness": 10.0
+	"VelocityRandomness": 10.0,
 }
 
 var origConf : Dictionary = configuration.duplicate(true)
+var camera : int = 1
 
 @onready var instance : Node3D = get_node("CrossbowInstance")
 

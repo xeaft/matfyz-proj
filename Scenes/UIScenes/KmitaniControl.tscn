@@ -103,7 +103,7 @@ theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/RychlostKmitani"]
 layout_mode = 2
-text = "Ryhclost Kmitání"
+text = "Rychlost Kmitání"
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/RychlostKmitani"]
 layout_mode = 2
@@ -137,7 +137,7 @@ theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/RychlostPohybu"]
 layout_mode = 2
-text = "Ryhclost Pohybu
+text = "Rychlost Pohybu
 "
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/RychlostPohybu"]
@@ -171,7 +171,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MoveRight"]
 layout_mode = 2
-text = "Pohybovat  doprava
+text = "Pohybovat  doleva
 "
 
 [node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/MoveRight"]

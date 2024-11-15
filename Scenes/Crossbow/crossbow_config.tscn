@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2esm5fp6xmqk"]
+[gd_scene load_steps=15 format=3 uid="uid://d2esm5fp6xmqk"]
 
 [ext_resource type="Script" path="res://Scripts/Crossbow/crossbowStrength.gd" id="1_iahqy"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/rotation.gd" id="1_uo1uc"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/TihoveZrychleni.gd" id="1_wb407"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/randomness.gd" id="2_ilh2g"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/loadAndShoot.gd" id="3_eedmq"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/clear_arrows.gd" id="3_ltyq5"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/camLowerButton.gd" id="5_jgkou"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/camGreater.gd" id="6_2yrt7"]
 [ext_resource type="Script" path="res://Scripts/BackToMainMenu.gd" id="9_jvg60"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grju5"]
@@ -45,10 +48,9 @@ corner_radius_bottom_left = 5
 
 [node name="CrossbowConfig" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchor_right = 0.392
 anchor_bottom = 1.0
-offset_right = -1168.0
+offset_right = -0.640015
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -109,6 +111,23 @@ max_value = 50.0
 value = 20.0
 script = ExtResource("1_iahqy")
 
+[node name="CrossbowRandomness" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CrossbowRandomness"]
+layout_mode = 2
+text = "Náhodnost"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CrossbowRandomness"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+max_value = 30.0
+value = 10.0
+script = ExtResource("2_ilh2g")
+
 [node name="CrossbowRotation" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 25
@@ -124,8 +143,12 @@ size_flags_vertical = 1
 focus_mode = 0
 min_value = 1.0
 max_value = 89.0
-value = 45.0
+value = 42.0
 script = ExtResource("1_uo1uc")
+
+[node name="ValueLabel" type="Label" parent="MarginContainer/HBoxContainer/CrossbowRotation"]
+layout_mode = 2
+text = "42°"
 
 [node name="TihoveZrychleni" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -133,7 +156,7 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
 layout_mode = 2
-text = "Tíhové Zrychlení"
+text = "Tíh. Zrychlení"
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
 layout_mode = 2
@@ -143,13 +166,35 @@ focus_mode = 0
 min_value = 0.1
 max_value = 40.0
 step = 0.1
-value = 9.3
+value = 9.8
 script = ExtResource("1_wb407")
 
 [node name="ValueText" type="Label" parent="MarginContainer/HBoxContainer/TihoveZrychleni"]
 layout_mode = 2
-text = "09.3
-"
+text = "09.8 ms⁻²"
+
+[node name="CameraSwitcher" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Lower" type="Button" parent="MarginContainer/HBoxContainer/CameraSwitcher"]
+layout_mode = 2
+focus_mode = 0
+disabled = true
+text = "  <--  "
+script = ExtResource("5_jgkou")
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CameraSwitcher"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Kamera 1"
+horizontal_alignment = 1
+
+[node name="Greater" type="Button" parent="MarginContainer/HBoxContainer/CameraSwitcher"]
+layout_mode = 2
+focus_mode = 0
+text = "   -->  "
+script = ExtResource("6_2yrt7")
 
 [node name="LoadAndShoot" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -192,8 +237,11 @@ text = "Zpět "
 script = ExtResource("9_jvg60")
 
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/CrossbowStrength/HSlider" to="MarginContainer/HBoxContainer/CrossbowStrength/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/CrossbowRandomness/HSlider" to="MarginContainer/HBoxContainer/CrossbowRandomness/HSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/CrossbowRotation/HSlider" to="MarginContainer/HBoxContainer/CrossbowRotation/HSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" to="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CameraSwitcher/Lower" to="MarginContainer/HBoxContainer/CameraSwitcher/Lower" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CameraSwitcher/Greater" to="MarginContainer/HBoxContainer/CameraSwitcher/Greater" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LoadAndShoot" to="MarginContainer/HBoxContainer/LoadAndShoot" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ClearArrows" to="MarginContainer/HBoxContainer/ClearArrows" method="_on_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

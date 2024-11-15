@@ -9,6 +9,9 @@ func _ready() -> void:
 	scale = Vector3.ZERO
 
 func _process(delta: float) -> void:
+	if not visible:
+		return
+		
 	timeAlive += delta
 	
 	if timeAlive > 2:

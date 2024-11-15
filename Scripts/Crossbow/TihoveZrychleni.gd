@@ -11,7 +11,7 @@ func formatText(txt : String):
 	if afterDot == null:
 		afterDot = "0"
 		
-	return beforeDot + "." + afterDot
+	return beforeDot + "." + afterDot + " ms⁻²"
 
 func _on_value_changed(nvalue: float) -> void:
 	Main.crossbow.configuration["TihoveZrychleni"] = nvalue
