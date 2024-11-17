@@ -31,6 +31,7 @@ func loadC() -> void:
 	loaded = true
 
 func _process(_delta: float) -> void:
+	var dbgTxt : String = ""
 	if targetCamRot and targetCamPos:
 		cam.global_position = cam.global_position.lerp(targetCamPos, 0.2)
 		cam.rotation = cam.rotation.lerp(targetCamRot, 0.2)
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 		for i in get_parent().get_children():
 			if i.is_in_group("crossbow_dart"):
 				darts += 1
-		Main.setDebugText("FPS: " + str(Engine.get_frames_per_second()) + "\nDarts: " + str(darts))
+		Main.setDebugText(dbgTxt + "Camera Position: " + str(cam.global_position) + "\nFPS: " + str(Engine.get_frames_per_second()) + "\nDarts: " + str(darts))
 	
 	if Input.is_action_just_released("shoot"):
 		if loaded:

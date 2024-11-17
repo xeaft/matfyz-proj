@@ -55,13 +55,5 @@ func generateMap() -> void:
 	for key in GenerationConfiguration:
 		var itemArr : Array = GenerationConfiguration[key]
 		var obj : Node3D = itemArr[0].instantiate()
-		for i in range(itemArr[1]):
+		for i in range(round(itemArr[1])):
 			generateObject(obj, crossbowPosition, itemArr[2])
-			
-			
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Escape"):
-		var packedScene : PackedScene = PackedScene.new()
-		packedScene.pack(self)
-		var savePath : String = "res://exported_map.tscn"
-		ResourceSaver.save(packedScene, savePath)

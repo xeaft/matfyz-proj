@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkehrqtev0f0u" path="res://Assets/3D/bigRock.fbx" id="7_0jkxx"]
 [ext_resource type="PackedScene" uid="uid://bsemvvkf7ekku" path="res://Assets/3D/smallRock.fbx" id="8_fdw7f"]
 [ext_resource type="PackedScene" uid="uid://b24124pspmop3" path="res://Assets/3D/tallTree.fbx" id="9_wksqg"]
-[ext_resource type="PackedScene" uid="uid://cd73jvl4xwyo8" path="res://Scenes/AssetScenes/DecoMap.tscn" id="10_lmh5a"]
+[ext_resource type="PackedScene" uid="uid://cd73jvl4xwyo8" path="res://Scenes/AssetScenes/DecoMap.tscn" id="11_06bkq"]
 [ext_resource type="Script" path="res://Scenes/Crossbow/rainPartInit.gd" id="11_s1bpl"]
 [ext_resource type="Script" path="res://addons/LineRenderer/line_renderer.gd" id="12_04y58"]
 
@@ -69,7 +69,7 @@ height = 0.6
 shading_mode = 0
 albedo_color = Color(1, 0.203922, 0.164706, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_6jeju"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_kyytq"]
 
 [node name="CrossbowScreen" type="Node3D"]
 script = ExtResource("1_lxw5g")
@@ -163,7 +163,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.905, -1.22705, -0.489456)
 [node name="tallTree" parent="Room/Decoration" instance=ExtResource("9_wksqg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1252, -0.908291, -1.97464)
 
-[node name="DefaultDecoration" parent="Room" instance=ExtResource("10_lmh5a")]
+[node name="DefaultDecoration" parent="Room" instance=ExtResource("11_06bkq")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.6947, 0, -423.373)
@@ -184,7 +184,7 @@ script = ExtResource("11_s1bpl")
 [node name="LineRenderer3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2c76p")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_6jeju")
+mesh = SubResource("ImmediateMesh_kyytq")
 script = ExtResource("12_04y58")
 points = Array[Vector3]([])
 start_thickness = 0.02
