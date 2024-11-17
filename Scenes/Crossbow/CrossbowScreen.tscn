@@ -1,35 +1,88 @@
-[gd_scene load_steps=9 format=3 uid="uid://c26i5eaw3b02l"]
+[gd_scene load_steps=26 format=3 uid="uid://c26i5eaw3b02l"]
 
 [ext_resource type="Script" path="res://Scripts/Crossbow/Crossbow.gd" id="1_0rrg3"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/crossbow_screen.gd" id="1_lxw5g"]
 [ext_resource type="PackedScene" uid="uid://dat0aqumily3r" path="res://Scenes/Crossbow/crossbow.tscn" id="2_lxw5g"]
+[ext_resource type="PackedScene" uid="uid://bv8k0mji6obog" path="res://Assets/3D/tree.fbx" id="4_d3n3r"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/MapGenerator.gd" id="4_smno1"]
+[ext_resource type="PackedScene" uid="uid://tweftbygvkwr" path="res://Assets/3D/treeTrunk.fbx" id="6_rmmo6"]
+[ext_resource type="PackedScene" uid="uid://bkehrqtev0f0u" path="res://Assets/3D/bigRock.fbx" id="7_0jkxx"]
+[ext_resource type="PackedScene" uid="uid://bsemvvkf7ekku" path="res://Assets/3D/smallRock.fbx" id="8_fdw7f"]
+[ext_resource type="PackedScene" uid="uid://b24124pspmop3" path="res://Assets/3D/tallTree.fbx" id="9_wksqg"]
+[ext_resource type="PackedScene" uid="uid://cd73jvl4xwyo8" path="res://Scenes/AssetScenes/DecoMap.tscn" id="10_lmh5a"]
+[ext_resource type="Script" path="res://Scenes/Crossbow/rainPartInit.gd" id="11_s1bpl"]
+[ext_resource type="Script" path="res://addons/LineRenderer/line_renderer.gd" id="12_04y58"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0rrg3"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xol2s"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_r55id"]
+sky_material = SubResource("ProceduralSkyMaterial_xol2s")
+
+[sub_resource type="Environment" id="Environment_1w3ag"]
+background_mode = 2
+sky = SubResource("Sky_r55id")
+tonemap_mode = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ni3ce"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_lxw5g"]
-sky_material = SubResource("ProceduralSkyMaterial_0rrg3")
+sky_material = SubResource("ProceduralSkyMaterial_ni3ce")
 
-[sub_resource type="Environment" id="Environment_syiuj"]
+[sub_resource type="Environment" id="Environment_i64sq"]
 background_mode = 2
 sky = SubResource("Sky_lxw5g")
+sky_rotation = Vector3(0, -6.28319, 0)
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.32856, 0.35778, 0.40371, 1)
+fog_light_energy = 1.17
+fog_sun_scatter = 0.48
+fog_density = 0.9474
+fog_aerial_perspective = 0.242
+fog_sky_affect = 0.211
+fog_height = -237.14
+fog_depth_curve = 0.267944
+fog_depth_begin = 0.0
+fog_depth_end = 810.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3ydn"]
+albedo_color = Color(0.184314, 0.52549, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lxw5g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_syiuj"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m1bv"]
+albedo_color = Color(0, 0.4, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d20if"]
+radius = 0.04
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c76p"]
+shading_mode = 0
+albedo_color = Color(1, 0.203922, 0.164706, 1)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_6jeju"]
+
 [node name="CrossbowScreen" type="Node3D"]
 script = ExtResource("1_lxw5g")
+
+[node name="NormalEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1w3ag")
+
+[node name="RainEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i64sq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.784365, 0.504614, 0.360745, 0.60181, 0.478123, 0.639705, 0.150324, 0.718862, -0.678705, -1.61813, -0.331031, -1.11651)
 shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_syiuj")
 
 [node name="CrossbowInstance" type="Node3D" parent="."]
 transform = Transform3D(0.2, -0.000115495, 0.000259406, 0.000259407, 0.148629, -0.133826, -0.000115495, 0.133826, 0.148629, 0, -0.657696, 3.46711)
@@ -37,67 +90,106 @@ script = ExtResource("1_0rrg3")
 
 [node name="Crossbow" parent="CrossbowInstance" instance=ExtResource("2_lxw5g")]
 
-[node name="Cameras" type="Node3D" parent="."]
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(0.936739, -0.0785429, 0.341102, 0, 0.974499, 0.22439, -0.350028, -0.210195, 0.912852, 0.769046, 0, 4.92913)
 
-[node name="1" type="Camera3D" parent="Cameras"]
+[node name="CameraInfo" type="Node3D" parent="."]
+
+[node name="1" type="Node3D" parent="CameraInfo"]
 transform = Transform3D(0.936739, -0.0785428, 0.341102, 0, 0.974499, 0.22439, -0.350028, -0.210195, 0.912852, 0.769046, 0, 4.92913)
-current = true
-fov = 105.0
 
-[node name="2" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -45.4423)
-fov = 105.0
+[node name="2" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -19.8008)
 
-[node name="3" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -71.8274)
-fov = 105.0
+[node name="3" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -40.7709)
 
-[node name="4" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -98.5676)
-fov = 105.0
+[node name="4" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -68.9432)
 
-[node name="5" type="Camera3D" parent="Cameras"]
-transform = Transform3D(0.953132, -0.0390944, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -125.661)
-fov = 105.0
+[node name="5" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -103.718)
+
+[node name="6" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -137.825)
+
+[node name="7" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -177.7)
+
+[node name="8" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -218.199)
+
+[node name="9" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -263.386)
+
+[node name="10" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -305.191)
+
+[node name="11" type="Node3D" parent="CameraInfo"]
+transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -357.866)
 
 [node name="Room" type="Node3D" parent="."]
 
 [node name="Floor" type="StaticBody3D" parent="Room"]
-transform = Transform3D(16.2308, 0, 0, 0, 0.0935403, 0, 0, 0, 171.887, 0, -1.39628, -70.1497)
+transform = Transform3D(220.438, 0, 0, 0, 0.0935403, 0, 0, 0, 461.587, 0.747528, -1.39628, -192.822)
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Floor"]
+material_override = SubResource("StandardMaterial3D_n3ydn")
 mesh = SubResource("BoxMesh_lxw5g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor"]
 shape = SubResource("BoxShape3D_syiuj")
 
-[node name="Roof" type="StaticBody3D" parent="Room"]
-transform = Transform3D(16.2308, 0, 0, 0, 0.0935403, 0, 0, 0, 171.887, 0, 36.1045, -70.1497)
-metadata/_edit_group_ = true
+[node name="Decoration" type="Node3D" parent="Room"]
+visible = false
+script = ExtResource("4_smno1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Roof"]
-mesh = SubResource("BoxMesh_lxw5g")
+[node name="tree" parent="Room/Decoration" instance=ExtResource("4_d3n3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.4405, -0.750649, -3.11308)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Roof"]
-shape = SubResource("BoxShape3D_syiuj")
+[node name="tree2" parent="Room/Decoration" instance=ExtResource("4_d3n3r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3884, -1.63434, 0.698156)
 
-[node name="LeftWall" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-1.66303e-06, -0.0935402, 0, 38.0456, -4.08877e-09, 0, 0, 0, 171.887, -8.02332, 17.1078, -70.1497)
-metadata/_edit_group_ = true
+[node name="treeTrunk" parent="Room/Decoration" instance=ExtResource("6_rmmo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8734, -1.28422, -4.50236)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/LeftWall"]
-mesh = SubResource("BoxMesh_lxw5g")
+[node name="bigRock" parent="Room/Decoration" instance=ExtResource("7_0jkxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.5384, -1.06916, -1.68777)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/LeftWall"]
-shape = SubResource("BoxShape3D_syiuj")
+[node name="smallRock" parent="Room/Decoration" instance=ExtResource("8_fdw7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.905, -1.22705, -0.489456)
 
-[node name="RightWall" type="StaticBody3D" parent="Room"]
-transform = Transform3D(-1.66303e-06, -0.0935402, 0, 38.0456, -4.08877e-09, 0, 0, 0, 171.887, 8.08127, 17.1078, -70.1497)
-metadata/_edit_group_ = true
+[node name="tallTree" parent="Room/Decoration" instance=ExtResource("9_wksqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1252, -0.908291, -1.97464)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RightWall"]
-mesh = SubResource("BoxMesh_lxw5g")
+[node name="DefaultDecoration" parent="Room" instance=ExtResource("10_lmh5a")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RightWall"]
-shape = SubResource("BoxShape3D_syiuj")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.6947, 0, -423.373)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 74.5531, -172.361)
+material_override = SubResource("StandardMaterial3D_6m1bv")
+amount = 300
+lifetime = 4.1
+preprocess = 5.37
+speed_scale = 2.93
+explosiveness = 0.04
+mesh = SubResource("CapsuleMesh_d20if")
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 200)
+script = ExtResource("11_s1bpl")
+
+[node name="LineRenderer3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2c76p")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_6jeju")
+script = ExtResource("12_04y58")
+points = Array[Vector3]([])
+start_thickness = 0.02
+end_thickness = 0.02
+draw_caps = false
+draw_crners = false
+use_global_coords = false
+tile_texture = false

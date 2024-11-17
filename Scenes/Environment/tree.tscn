@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://5g6yxt2tkqje"]
+
+[ext_resource type="PackedScene" uid="uid://bv8k0mji6obog" path="res://Assets/3D/tree.fbx" id="1_ovmxb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dnl75"]
+height = 2.68908
+radius = 0.309873
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d6efm"]
+size = Vector3(1.67767, 1.60591, 2.21527)
+
+[node name="tree" instance=ExtResource("1_ovmxb")]
+
+[node name="Trunk" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trunk" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.744131, 0)
+shape = SubResource("CylinderShape3D_dnl75")
+
+[node name="Leaves" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Leaves" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100743, 2.50719, -0.0298648)
+shape = SubResource("BoxShape3D_d6efm")

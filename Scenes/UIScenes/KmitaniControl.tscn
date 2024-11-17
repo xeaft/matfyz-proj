@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ojnr20dand0i"]
+[gd_scene load_steps=14 format=3 uid="uid://ojnr20dand0i"]
 
 [ext_resource type="Script" path="res://Scripts/Kmitani/KmitSpeedControl.gd" id="1_6adj0"]
 [ext_resource type="Script" path="res://Scripts/Kmitani/KmitMovementToggle.gd" id="1_dm2pd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Kmitani/Offset.gd" id="6_5k8y4"]
 [ext_resource type="Script" path="res://Scripts/Kmitani/moveRight.gd" id="6_m3pv6"]
 [ext_resource type="Script" path="res://Scripts/BackToMainMenu.gd" id="7_ynvcf"]
+[ext_resource type="Script" path="res://Scripts/Kmitani/followPoint.gd" id="8_1l6fe"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxj5f"]
 bg_color = Color(0.470915, 0.0158269, 2.40654e-08, 1)
@@ -36,20 +37,19 @@ corner_radius_bottom_left = 5
 layout_mode = 3
 anchor_right = 0.289
 anchor_bottom = 1.023
-offset_right = 0.071991
-offset_bottom = -14.904
+offset_right = 131.12
+offset_bottom = -14.84
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.627
 anchor_bottom = 0.992
 offset_right = 0.0450745
 offset_bottom = -0.216553
-grow_horizontal = 2
-grow_vertical = 2
 color = Color(0, 0, 0, 0.427451)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -63,6 +63,7 @@ theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/separation = 25
 
@@ -166,15 +167,15 @@ min_value = -20.0
 max_value = 20.0
 script = ExtResource("6_5k8y4")
 
-[node name="MoveRight" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="MoveLeft" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MoveRight"]
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MoveLeft"]
 layout_mode = 2
 text = "Pohybovat  doleva
 "
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/MoveRight"]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/MoveLeft"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -182,6 +183,22 @@ focus_mode = 0
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("6_m3pv6")
+
+[node name="FollowPoint" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/FollowPoint"]
+layout_mode = 2
+text = "Sledovat hmotný bod"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/FollowPoint"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("8_1l6fe")
 
 [node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -220,6 +237,7 @@ script = ExtResource("7_ynvcf")
 [connection signal="toggled" from="MarginContainer/HBoxContainer/MoveTogggle/CheckButton" to="MarginContainer/HBoxContainer/MoveTogggle/CheckButton" method="_on_toggled"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/RychlostPohybu/HSlider" to="MarginContainer/HBoxContainer/RychlostPohybu/HSlider" method="_on_value_changed"]
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/Posunuti/HSlider" to="MarginContainer/HBoxContainer/Posunuti/HSlider" method="_on_value_changed"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/MoveRight/CheckButton" to="MarginContainer/HBoxContainer/MoveRight/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/MoveLeft/CheckButton" to="MarginContainer/HBoxContainer/MoveLeft/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/FollowPoint/CheckButton" to="MarginContainer/HBoxContainer/FollowPoint/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="MarginContainer/HBoxContainer/Button" method="_on_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bg8ydi7l2whyl" path="res://Assets/3D/Cone.fbx" id="1_oj62p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oj62p"]
+shading_mode = 0
 albedo_color = Color(0.65834, 0.65834, 0.65834, 1)
-metallic = 1.0
 
 [node name="Cone" instance=ExtResource("1_oj62p")]
 

@@ -8,22 +8,27 @@ var dbgTxt : Label
 var game : Node3D
 var UI : Control
 var mainMenu : Control
+var debugUI : Control
+var showDebug : bool = false
+var enableRain : bool = false
+var rainIntensity : int = 2000
+var focusDart : Node3D
 
 var RNG : RandomNumberGenerator = RandomNumberGenerator.new()
 
 var currentProject : Node3D
 var preloaded : Dictionary = {
-	"voda": preload("res://Scenes/Kmitani/kmitani_screen.tscn"),
 	"kmitani": preload("res://Scenes/Kmitani/kmitani_screen.tscn"),
-	"hazeni": preload("res://Scenes/Kmitani/kmitani_screen.tscn"),
 	"kuse": preload("res://Scenes/Crossbow/CrossbowScreen.tscn"),
 }
 
-var defaultMMThings : Array = ["UserInterface", "MainMenu"]
+var defaultMMThings : Array = ["UserInterface", "MainMenu", "debugui"]
 func backToMainMenu() -> void:
+	if dbgTxt:
+		dbgTxt.text = ""
+		
 	for i in UI.get_children():
-		if i.name != "dbgInfo":
-			i.queue_free()
+		i.queue_free()
 	for i in game.get_children():
 		if i.name not in defaultMMThings:
 			i.queue_free()
@@ -35,3 +40,7 @@ func setDebugText(text: String) -> void:
 		return
 	
 	dbgTxt.text = text
+
+func makeSceneTopmost(scene : Node) -> void:
+	var sceneParent = scene.get_parent()
+	sceneParent.move_child(scene, sceneParent.get_child_count())

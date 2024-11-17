@@ -13,9 +13,14 @@ var configuration : Dictionary = {
 	"VibrationSpeed": 2.0,
 	"ShowPath": true,
 	"MoveRight": false,
-	"Offset": 0.0
+	"Offset": 0.0,
+	"FollowPoint": false
 }
 
+@onready var cam : Camera3D = get_node("../../Camera3D")
+@onready var bg : MeshInstance3D = get_node("../../Background")
+@onready var origDist : float = abs(cam.global_position.x - global_position.x)
+var followDist : float = 3.5
 var origConf = configuration.duplicate(true)
 
 func _ready() -> void:
@@ -48,7 +53,12 @@ func updatePos() -> void:
 	position.x = configuration["Offset"] + moveTimer
 
 func _process(delta: float) -> void:
-	Main.setDebugText("Position: " + str(global_position.y) + "\nFPS: " + str(Engine.get_frames_per_second()) + "\nPoints: " + str(len(lineRenderer.points)))
+	var dist : float = cam.global_position.x - global_position.x
+	Main.setDebugText("Position: " + str(global_position.y) + "\nFPS: " + str(Engine.get_frames_per_second()) + "\nPoints: " + str(len(lineRenderer.points)) + "\n" + "Dist: " + str(dist))
+	
+	if configuration["FollowPoint"]:
+		cam.global_position.x = lerp(cam.global_position.x, global_position.x, 0.1)
+		bg.global_position.x = global_position.x
 	
 	if configuration["ShowPath"]:
 		var pos : Vector3 = roundVec(global_position)

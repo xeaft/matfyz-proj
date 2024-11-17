@@ -14,7 +14,7 @@ albedo_color = Color(0.125911, 0.125911, 0.125911, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 
 [node name="Background" type="MeshInstance3D" parent="."]
-transform = Transform3D(31.6308, 0, 0, 0, -2.80512e-07, -25.818, 0, 6.41737, -1.12854e-06, 0, 0, -0.264297)
+transform = Transform3D(20.5052, 0, 0, 0, -2.80512e-07, -17.7203, 0, 6.41737, -7.74577e-07, 0, 0, -0.264297)
 material_override = SubResource("StandardMaterial3D_hn2gg")
 mesh = SubResource("PlaneMesh_2w7nq")
 

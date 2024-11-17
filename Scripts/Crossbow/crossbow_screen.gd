@@ -22,3 +22,7 @@ func _ready() -> void:
 	Main.crossbow = self
 	Main.currentProject = self
 	Main.UI.add_child(load("res://Scenes/Crossbow/crossbow_config.tscn").instantiate())
+	if Main.enableRain:
+		get_node("NormalEnvironment").queue_free()
+	else:
+		get_node("RainEnvironment").queue_free()

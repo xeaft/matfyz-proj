@@ -1,0 +1,224 @@
+[gd_scene load_steps=12 format=3 uid="uid://bqs3w8vcs2i82"]
+
+[ext_resource type="Texture2D" uid="uid://jhn7eu4737wk" path="res://Assets/exit_cross.png" id="1_1u73n"]
+[ext_resource type="Script" path="res://Scripts/Settings/CloseSettings.gd" id="1_7smp1"]
+[ext_resource type="Script" path="res://Scripts/Settings/ShowDebugInfo.gd" id="1_by4wx"]
+[ext_resource type="Texture2D" uid="uid://crnfgca24m0py" path="res://Assets/exit_cross_hover.png" id="2_cve5k"]
+[ext_resource type="Script" path="res://Scripts/Settings/RainIntensity.gd" id="3_hpl4e"]
+[ext_resource type="Script" path="res://Scripts/Settings/RainToggle.gd" id="3_xhub7"]
+[ext_resource type="Script" path="res://Scripts/Settings/exit_button.gd" id="4_6jpxk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_si2sk"]
+font_size = 36
+
+[sub_resource type="Animation" id="Animation_76q1b"]
+resource_name = "ToggleVisibility"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_4ykam"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_euab8"]
+_data = {
+&"RESET": SubResource("Animation_4ykam"),
+&"ToggleVisibility": SubResource("Animation_76q1b")
+}
+
+[node name="MainSettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7smp1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359, 0.18359, 0.18359, 0.603922)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+color = Color(0.0177324, 0.0177324, 0.0177324, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Nastavení"
+label_settings = SubResource("LabelSettings_si2sk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DebugInfoToggle" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings"]
+custom_minimum_size = Vector2(0, 28.38)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Zobrazit ladící informace"
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+script = ExtResource("1_by4wx")
+
+[node name="RainToggle" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings"]
+custom_minimum_size = Vector2(0, 28.34)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Zapnout déšť"
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+script = ExtResource("3_xhub7")
+
+[node name="RainIntensity" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Intenzita déště"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(95.385, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 1
+min_value = 300.0
+max_value = 6000.0
+value = 2000.0
+script = ExtResource("3_hpl4e")
+
+[node name="Value" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = " 2000"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24.875)
+layout_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="CenterContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.059
+anchor_bottom = 0.088
+offset_right = 52.6
+offset_bottom = 52.8
+scale = Vector2(0.4, 0.4)
+focus_mode = 0
+texture_normal = ExtResource("1_1u73n")
+texture_pressed = ExtResource("2_cve5k")
+texture_hover = ExtResource("1_1u73n")
+stretch_mode = 3
+script = ExtResource("4_6jpxk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_euab8")
+}
+
+[connection signal="toggled" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer/CheckButton" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer/CheckButton" method="_on_toggled"]
+[connection signal="toggled" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer/CheckButton" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer/CheckButton" method="_on_toggled"]
+[connection signal="value_changed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer/HSlider" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer/HSlider" method="_on_value_changed"]
+[connection signal="pressed" from="CenterContainer/ColorRect/ExitButton" to="CenterContainer/ColorRect/ExitButton" method="_on_pressed"]

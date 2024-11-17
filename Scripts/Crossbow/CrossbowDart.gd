@@ -11,6 +11,11 @@ var initGlobalAngle : float
 
 @onready var label : Label3D = get_node("../DefaultLabel")
 @onready var newLabel : Label3D
+@onready var lr : Node3D = Main.crossbow.get_node("LineRenderer3D")
+
+func _ready() -> void:
+	Main.focusDart = self
+	lr.points.clear()
 
 func shoot(rot : float) -> void:
 	var veloXRand : float = Main.crossbow.configuration["VelocityRandomness"]
@@ -66,6 +71,9 @@ func _process(delta: float) -> void:
 		if is_instance_valid(newLabel):
 			newLabel.global_position = global_position + Vector3.UP / 3
 		return
+	
+	if Main.focusDart == self:
+		lr.points.append(global_position)
 	
 	var oldPosition : Vector3 = global_position
 	

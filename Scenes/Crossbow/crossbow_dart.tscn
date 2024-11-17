@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Crossbow/DistanceLabel.gd" id="4_hqbok"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q7wg"]
+shading_mode = 0
 albedo_color = Color(0.723749, 0.334511, 2.88785e-07, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_rdpq7"]
