@@ -13,6 +13,8 @@ var showDebug : bool = false
 var enableRain : bool = false
 var rainIntensity : int = 2000
 var focusDart : Node3D
+var settingsMenu : Control
+var environment : WorldEnvironment
 
 var RNG : RandomNumberGenerator = RandomNumberGenerator.new()
 

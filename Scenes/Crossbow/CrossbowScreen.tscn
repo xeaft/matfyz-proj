@@ -14,8 +14,7 @@
 [ext_resource type="Script" path="res://addons/LineRenderer/line_renderer.gd" id="12_04y58"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xol2s"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_curve = 0.109806
 
 [sub_resource type="Sky" id="Sky_r55id"]
 sky_material = SubResource("ProceduralSkyMaterial_xol2s")
@@ -59,17 +58,18 @@ albedo_color = Color(0.184314, 0.52549, 0, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_syiuj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6m1bv"]
-albedo_color = Color(0, 0.4, 1, 1)
+transparency = 1
+albedo_color = Color(0.333333, 0.576471, 1, 0.670588)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d20if"]
-radius = 0.04
-height = 0.6
+radius = 0.03
+height = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2c76p"]
 shading_mode = 0
 albedo_color = Color(1, 0.203922, 0.164706, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_kyytq"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_82lr8"]
 
 [node name="CrossbowScreen" type="Node3D"]
 script = ExtResource("1_lxw5g")
@@ -81,8 +81,9 @@ environment = SubResource("Environment_1w3ag")
 environment = SubResource("Environment_i64sq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.784365, 0.504614, 0.360745, 0.60181, 0.478123, 0.639705, 0.150324, 0.718862, -0.678705, -1.61813, -0.331031, -1.11651)
+transform = Transform3D(-0.862133, 0.259314, 0.435298, 0.506183, 0.402636, 0.762668, 0.0225038, 0.877861, -0.478386, -1.61813, -0.331031, -1.11651)
 shadow_enabled = true
+shadow_blur = 10.0
 
 [node name="CrossbowInstance" type="Node3D" parent="."]
 transform = Transform3D(0.2, -0.000115495, 0.000259406, 0.000259407, 0.148629, -0.133826, -0.000115495, 0.133826, 0.148629, 0, -0.657696, 3.46711)
@@ -102,31 +103,31 @@ transform = Transform3D(0.936739, -0.0785428, 0.341102, 0, 0.974499, 0.22439, -0
 transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -19.8008)
 
 [node name="3" type="Node3D" parent="CameraInfo"]
-transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -40.7709)
+transform = Transform3D(0.820399, 0.259883, -0.50932, -0.0739208, 0.931474, 0.356219, 0.566994, -0.254592, 0.783391, -11.8311, 6.50765, -40.7709)
 
 [node name="4" type="Node3D" parent="CameraInfo"]
 transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -68.9432)
 
 [node name="5" type="Node3D" parent="CameraInfo"]
-transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -103.718)
+transform = Transform3D(0.820694, 0.25975, -0.508912, -0.0739208, 0.931474, 0.356219, 0.566566, -0.254727, 0.783656, -11.831, 6.50765, -103.718)
 
 [node name="6" type="Node3D" parent="CameraInfo"]
 transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -137.825)
 
 [node name="7" type="Node3D" parent="CameraInfo"]
-transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -177.7)
+transform = Transform3D(0.820694, 0.25975, -0.508912, -0.0739208, 0.931474, 0.356219, 0.566566, -0.254727, 0.783656, -11.831, 6.50765, -177.7)
 
 [node name="8" type="Node3D" parent="CameraInfo"]
 transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -218.199)
 
 [node name="9" type="Node3D" parent="CameraInfo"]
-transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -263.386)
+transform = Transform3D(0.820694, 0.25975, -0.508912, -0.0739208, 0.931474, 0.356219, 0.566566, -0.254727, 0.783656, -11.831, 6.508, -263.386)
 
 [node name="10" type="Node3D" parent="CameraInfo"]
 transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -305.191)
 
 [node name="11" type="Node3D" parent="CameraInfo"]
-transform = Transform3D(0.953133, -0.0390943, 0.300017, -0.0739208, 0.931474, 0.356219, -0.293384, -0.361701, 0.884928, 5.6993, 6.50765, -357.866)
+transform = Transform3D(0.820694, 0.25975, -0.508912, -0.0739208, 0.931474, 0.356219, 0.566566, -0.254727, 0.783656, -11.831, 6.50765, -357.866)
 
 [node name="Room" type="Node3D" parent="."]
 
@@ -184,7 +185,7 @@ script = ExtResource("11_s1bpl")
 [node name="LineRenderer3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2c76p")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_kyytq")
+mesh = SubResource("ImmediateMesh_82lr8")
 script = ExtResource("12_04y58")
 points = Array[Vector3]([])
 start_thickness = 0.02

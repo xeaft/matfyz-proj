@@ -30,11 +30,32 @@ func loadC() -> void:
 	add_child(crossbowLoaded.instantiate())
 	loaded = true
 
-func _process(_delta: float) -> void:
+@onready var sun : DirectionalLight3D = get_node("../DirectionalLight3D")
+var time : float = 0
+const SKY_NORMAL_COLOR : Color = Color(0.385, 0.454, 0.55, 1)
+const SKY_NIGHT_COLOR : Color = Color(0.0774, 0.1632, 0.3003, 1)
+const SKY_HOR_NIGHT : Color = Color(0.0742, 0.0771, 0.0818, 1)
+const SKY_HOR_DAY : Color = Color(0.6463, 0.6558, 0.6708, 1)
+const DAY_NIGHT_CYCLE_SPEED : float = 2
+
+func _process(delta: float) -> void:
+	sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED)
+	var degRot : float = rad_to_deg(sun.rotation.x)
+	if degRot >= 360:
+		sun.rotation.x = deg_to_rad(-360 + (degRot - 360))
+		
+	if (degRot > 0 and degRot < 180) or (degRot < -180 and degRot > -360):
+		updateSkyColor(SKY_NIGHT_COLOR, SKY_HOR_NIGHT)
+		sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED * 3) # faster night cycle
+	else:
+		updateSkyColor(SKY_NORMAL_COLOR, SKY_HOR_DAY)
+		
+	
 	var dbgTxt : String = ""
 	if targetCamRot and targetCamPos:
-		cam.global_position = cam.global_position.lerp(targetCamPos, 0.2)
-		cam.rotation = cam.rotation.lerp(targetCamRot, 0.2)
+		cam.global_position = cam.global_position.lerp(targetCamPos, 0.1)
+		cam.rotation.y = lerp(cam.rotation.y, targetCamRot.y, 0.1)
+		cam.rotation.z = lerp(cam.rotation.z, targetCamRot.z, 0.1)
 	
 	if Main.showDebug:
 		var darts : int = 0
@@ -48,3 +69,13 @@ func _process(_delta: float) -> void:
 			shoot()
 		else:
 			loadC()
+
+func updateSkyColor(nSkyTopCol : Color, nSkyHorCol : Color) -> void:
+	var skyTopCol : Color = Main.environment.environment.sky.sky_material.sky_top_color
+	var skyHorCol : Color = Main.environment.environment.sky.sky_material.sky_horizon_color
+	var gndHorCol : Color = Main.environment.environment.sky.sky_material.ground_horizon_color
+	var weight : float = 0.15
+
+	Main.environment.environment.sky.sky_material.sky_top_color = skyTopCol.lerp(nSkyTopCol, weight)
+	Main.environment.environment.sky.sky_material.sky_horizon_color = skyHorCol.lerp(nSkyHorCol, weight)
+	Main.environment.environment.sky.sky_material.ground_horizon_color = gndHorCol.lerp(nSkyHorCol, weight)

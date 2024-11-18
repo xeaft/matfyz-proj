@@ -2,4 +2,4 @@ extends TextureButton
 
 
 func _on_pressed() -> void:
-	get_node("../../..").doHide()
+	Main.settingsMenu.doHide()

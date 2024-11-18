@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d2esm5fp6xmqk"]
+[gd_scene load_steps=18 format=3 uid="uid://d2esm5fp6xmqk"]
 
 [ext_resource type="Script" path="res://Scripts/Crossbow/crossbowStrength.gd" id="1_iahqy"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/rotation.gd" id="1_uo1uc"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/Crossbow/clear_arrows.gd" id="3_ltyq5"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/camLowerButton.gd" id="5_jgkou"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/camGreater.gd" id="6_2yrt7"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/CamRot.gd" id="7_ewsg1"]
+[ext_resource type="Script" path="res://Scripts/Crossbow/SunPosition.gd" id="8_cvpxv"]
 [ext_resource type="Script" path="res://Scripts/BackToMainMenu.gd" id="9_jvg60"]
 [ext_resource type="Script" path="res://Scripts/Crossbow/RegenerateMap.gd" id="10_im6ke"]
 
@@ -197,6 +199,42 @@ focus_mode = 0
 text = "   -->  "
 script = ExtResource("6_2yrt7")
 
+[node name="CameraRotation" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CameraRotation"]
+layout_mode = 2
+text = "Otočení kamery"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CameraRotation"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+min_value = -90.0
+max_value = 90.0
+step = 0.1
+value = -13.0
+script = ExtResource("7_ewsg1")
+
+[node name="SunRotation" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/SunRotation"]
+layout_mode = 2
+text = "Otočení planety"
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/SunRotation"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+focus_mode = 0
+max_value = 360.0
+value = 10.0
+script = ExtResource("8_cvpxv")
+
 [node name="LoadAndShoot" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 focus_mode = 0
@@ -259,6 +297,8 @@ script = ExtResource("10_im6ke")
 [connection signal="value_changed" from="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" to="MarginContainer/HBoxContainer/TihoveZrychleni/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CameraSwitcher/Lower" to="MarginContainer/HBoxContainer/CameraSwitcher/Lower" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/CameraSwitcher/Greater" to="MarginContainer/HBoxContainer/CameraSwitcher/Greater" method="_on_pressed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/CameraRotation/HSlider" to="MarginContainer/HBoxContainer/CameraRotation/HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/SunRotation/HSlider" to="MarginContainer/HBoxContainer/SunRotation/HSlider" method="_on_value_changed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LoadAndShoot" to="MarginContainer/HBoxContainer/LoadAndShoot" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/ClearArrows" to="MarginContainer/HBoxContainer/ClearArrows" method="_on_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

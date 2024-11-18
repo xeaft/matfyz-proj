@@ -2,7 +2,7 @@ extends StaticBody3D
 
 var initAngle : float
 var timeFlying : float = 0
-var initVeloY : float = Main.crossbow.configuration["InitialVelocity"]
+var initVeloY : float = Main.crossbow.configuration["InitialVelocity"] / 1.1
 var initVeloX : float = Main.crossbow.configuration["InitialVelocity"]
 var onGround : bool = false
 var initPos : Vector3
@@ -67,7 +67,7 @@ func collide() -> void:
 var peakYPos : float = -99.0
 func _process(delta: float) -> void:
 	if onGround:
-		position.y = lerp(position.y, onFallPos + 0.3, 0.2)
+		position.y = lerp(position.y, onFallPos + 0.1, 0.2)
 		if is_instance_valid(newLabel):
 			newLabel.global_position = global_position + Vector3.UP / 3
 		return

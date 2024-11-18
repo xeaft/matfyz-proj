@@ -16,7 +16,7 @@ albedo_color = Color(1, 0, 0, 1)
 shading_mode = 0
 albedo_color = Color(0.695503, 0.695503, 0.695503, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_17j5y"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_owdgw"]
 
 [node name="SinMoveBall" type="Node3D"]
 script = ExtResource("1_64xyk")
@@ -34,7 +34,7 @@ shape = SubResource("SphereShape3D_e8w26")
 
 [node name="LineRenderer3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_6dt7s")
-mesh = SubResource("ImmediateMesh_17j5y")
+mesh = SubResource("ImmediateMesh_owdgw")
 script = ExtResource("3_prx4p")
 points = Array[Vector3]([])
 start_thickness = 0.03
