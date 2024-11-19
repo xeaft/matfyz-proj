@@ -5,8 +5,12 @@ extends HSlider
 func formatText(txt : String):
 	if len(txt) == 3:
 		txt = "0" + txt
+	if txt.find("."):
+		txt = txt.split(".")[0]
+	
 	return " " + txt
 
 func _on_value_changed(nvalue: float) -> void:
-	Main.rainIntensity = nvalue
-	valLabel.text = formatText(str(nvalue))
+	var nvalue2 : int = int(nvalue)
+	Main.rainIntensity = nvalue2
+	valLabel.text = formatText(str(nvalue2))

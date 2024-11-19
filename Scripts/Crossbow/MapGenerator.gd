@@ -15,14 +15,14 @@ var logAmount : int = 250
 @onready var bigRock : PackedScene = preload("res://Assets/3D/bigRock.fbx")
 @onready var tower : PackedScene = preload("res://Assets/3D/tree.fbx")
 @onready var tallTree : PackedScene = preload("res://Scenes/Environment/tall_tree.tscn")
-@onready var log : PackedScene = preload("res://Assets/3D/treeTrunk.fbx")
+@onready var woodenLog : PackedScene = preload("res://Assets/3D/treeTrunk.fbx")
 
 @onready var GenerationConfiguration : Dictionary = {
 	"normalTree": [tree, 800, -0.774],
 	"tallTree": [tallTree, 400, -0.908],
 	"rock": [bigRock, 400, -1.069],
 	"smallRock": [smallRock, 400, -1.224],
-	"log": [log, 400, -1.284],
+	"woodenLog": [woodenLog, 400, -1.284],
 }
 
 

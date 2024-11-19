@@ -3,7 +3,7 @@ extends Control
 func _ready() -> void:
 	Main.settingsMenu = self
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if visible and Input.is_action_just_pressed("Escape"):
 		doHide()
 

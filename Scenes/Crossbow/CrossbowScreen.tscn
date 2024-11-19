@@ -69,7 +69,7 @@ height = 0.5
 shading_mode = 0
 albedo_color = Color(1, 0.203922, 0.164706, 1)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_82lr8"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_i2krs"]
 
 [node name="CrossbowScreen" type="Node3D"]
 script = ExtResource("1_lxw5g")
@@ -185,7 +185,7 @@ script = ExtResource("11_s1bpl")
 [node name="LineRenderer3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_2c76p")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_82lr8")
+mesh = SubResource("ImmediateMesh_i2krs")
 script = ExtResource("12_04y58")
 points = Array[Vector3]([])
 start_thickness = 0.02

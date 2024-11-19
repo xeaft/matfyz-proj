@@ -39,17 +39,8 @@ const SKY_HOR_DAY : Color = Color(0.6463, 0.6558, 0.6708, 1)
 const DAY_NIGHT_CYCLE_SPEED : float = 2
 
 func _process(delta: float) -> void:
-	sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED)
-	var degRot : float = rad_to_deg(sun.rotation.x)
-	if degRot >= 360:
-		sun.rotation.x = deg_to_rad(-360 + (degRot - 360))
-		
-	if (degRot > 0 and degRot < 180) or (degRot < -180 and degRot > -360):
-		updateSkyColor(SKY_NIGHT_COLOR, SKY_HOR_NIGHT)
-		sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED * 3) # faster night cycle
-	else:
-		updateSkyColor(SKY_NORMAL_COLOR, SKY_HOR_DAY)
-		
+	if not Main.disableDayNightCycle:
+		doDayNightCycle(delta)
 	
 	var dbgTxt : String = ""
 	if targetCamRot and targetCamPos:
@@ -69,6 +60,18 @@ func _process(delta: float) -> void:
 			shoot()
 		else:
 			loadC()
+
+func doDayNightCycle(delta : float) -> void:
+	sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED)
+	var degRot : float = rad_to_deg(sun.rotation.x)
+	if degRot >= 360:
+		sun.rotation.x = deg_to_rad(-360 + (degRot - 360))
+		
+	if (degRot > 0 and degRot < 180) or (degRot < -180 and degRot > -360):
+		updateSkyColor(SKY_NIGHT_COLOR, SKY_HOR_NIGHT)
+		sun.rotation.x += deg_to_rad(delta * DAY_NIGHT_CYCLE_SPEED * 3) # faster night cycle
+	else:
+		updateSkyColor(SKY_NORMAL_COLOR, SKY_HOR_DAY)
 
 func updateSkyColor(nSkyTopCol : Color, nSkyHorCol : Color) -> void:
 	var skyTopCol : Color = Main.environment.environment.sky.sky_material.sky_top_color

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqs3w8vcs2i82"]
+[gd_scene load_steps=16 format=3 uid="uid://bqs3w8vcs2i82"]
 
 [ext_resource type="Texture2D" uid="uid://jhn7eu4737wk" path="res://Assets/exit_cross.png" id="1_1u73n"]
 [ext_resource type="Script" path="res://Scripts/Settings/CloseSettings.gd" id="1_7smp1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Settings/RainIntensity.gd" id="3_hpl4e"]
 [ext_resource type="Script" path="res://Scripts/Settings/RainToggle.gd" id="3_xhub7"]
 [ext_resource type="Script" path="res://Scripts/Settings/exit_button.gd" id="4_6jpxk"]
+[ext_resource type="Script" path="res://Scripts/Settings/DisableDayNightCylcle.gd" id="5_h0i6e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_si2sk"]
 font_size = 36
@@ -182,8 +183,8 @@ focus_mode = 0
 script = ExtResource("3_xhub7")
 
 [node name="RainIntensity" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings"]
+custom_minimum_size = Vector2(0, 25.375)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity"]
 layout_mode = 1
@@ -214,6 +215,32 @@ script = ExtResource("3_hpl4e")
 [node name="Value" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = " 2000"
+
+[node name="DisableDaynightCycle" type="Control" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Vypnout střídání dne a noci"
+
+[node name="CheckButton" type="CheckButton" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+script = ExtResource("5_h0i6e")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ColorRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 24.875)
@@ -261,5 +288,6 @@ libraries = {
 [connection signal="toggled" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer/CheckButton" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DebugInfoToggle/MarginContainer/HBoxContainer/CheckButton" method="_on_toggled"]
 [connection signal="toggled" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer/CheckButton" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainToggle/MarginContainer/HBoxContainer/CheckButton" method="_on_toggled"]
 [connection signal="value_changed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer/HSlider" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/RainIntensity/MarginContainer/HBoxContainer/HSlider" method="_on_value_changed"]
+[connection signal="toggled" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle/MarginContainer/HBoxContainer/CheckButton" to="CenterContainer/ColorRect/MarginContainer/VBoxContainer/Settings/DisableDaynightCycle/MarginContainer/HBoxContainer/CheckButton" method="_on_toggled"]
 [connection signal="pressed" from="CenterContainer/ColorRect/MarginContainer/VBoxContainer/VBoxContainer/MarginContainer/Button" to="CenterContainer/ColorRect/ExitButton" method="_on_pressed"]
 [connection signal="pressed" from="CenterContainer/ColorRect/ExitButton" to="CenterContainer/ColorRect/ExitButton" method="_on_pressed"]
